@@ -22,14 +22,11 @@ export const generateCode: (day: number) => Promise<void> = async (day) => {
             const { errno, code, syscall, path = '' } = error;
             if (errno == -2 && code == 'ENOENT' && syscall == 'opendir') {
                 await mkdir(path);
-                console.log(`Directory created: ${path}`);
                 for (let fileName of await readdir('template')) {
                     const filePath = `${__dirname}/template/${fileName}`;
-                    console.log(filePath);
                     const fileContent = (await readFile(filePath))
                         .toString()
                         .replace('const day = 0', `const day = ${day}`);
-                    console.log(fileContent);
                     await writeFile(`${__dirname}/${path}/${fileName}`, fileContent);
                 }
             }
