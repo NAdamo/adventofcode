@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "nodemon index.ts",
+    "dev": "nodemon index.ts",
+    "start": "ts-node index.ts",
+    "startAll": "ts-node index.ts -a",
     "generate": "ts-node index.ts -g"
   },
   "repository": {
